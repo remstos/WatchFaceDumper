@@ -8,6 +8,8 @@ extension Watchface {
         public var resource_directory: Bool? = true
         public var customization: Customization
         public var complications: Complications?
+        public var analytics_id: String = "photos"
+        public var forMigration: Bool = false
 
         private enum CodingKeys: String, CodingKey {
             case version
@@ -15,6 +17,8 @@ extension Watchface {
             case complications
             case face_type = "face type"
             case resource_directory = "resource directory"
+            case analytics_id = "analytics id"
+            case forMigration = "forMigration"
         }
 
         public enum FaceType: String, Codable {
@@ -121,12 +125,16 @@ extension Watchface {
             }
         }
 
-        public init(version: Int = 4, face_type: FaceType, resource_directory: Bool? = true, customization: Customization, complications: Complications? = nil) {
+        public init(version: Int = 4, face_type: FaceType, resource_directory: Bool? = true, customization: Customization, complications: Complications? = nil,
+                    analyticsId: String = "photos",
+                    forMigration: Bool = false) {
             self.version = version
             self.face_type = face_type
             self.resource_directory = resource_directory
             self.customization = customization
             self.complications = complications
+            self.analytics_id = analyticsId
+            self.forMigration = forMigration
         }
     }
 }
